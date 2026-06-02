@@ -1,0 +1,15 @@
+{
+  "name": "kamp-student-dashboard",
+  "version": "1.0.0",
+  "description": "KAMP College of Engineering and Technology - Student Management Portal",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx --yes lite-server",
+    "dev": "npx --yes lite-server",
+    "serve": "npx --yes http-server . -p 3000 -o"
+  },
+  "keywords": ["college", "student", "dashboard", "kamp"],
+  "author": "KAMP College",
+  "license": "MIT",
+  "devDependencies": {}
+}

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KAMP Student Portal Dashboard</title>
+  <meta name="description" content="KAMP College of Engineering and Technology Student Portal Dashboard" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="student.css" />
+</head>
+<body>
+  <div class="dashboard-branding">
+    <div class="branding-logo">
+      <img src="kamp_logo.jpg" alt="KAMP College Logo" />
+    </div>
+    <div class="branding-copy">
+      <span class="branding-name">KAMP COLLEGE OF ENGINEERING AND TECHNOLOGY</span>
+    </div>
+  </div>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Portal navigation">
+      <nav class="sidebar-nav">
+        <button class="nav-item" type="button" data-page="studentPage">
+          <svg viewBox="0 0 24 24"><path d="M3 12.2 12 4l9 8.2v7.3c0 .8-.7 1.5-1.5 1.5h-5v-6h-5v6h-5C3.7 21 3 20.3 3 19.5v-7.3Z"/></svg>
+          Dashboard
+        </button>
+        <button class="nav-item active" type="button" data-page="studentPage">
+          <svg viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5Zm-6 8.4 6 3 6-3V16c0 2-2.7 3.8-6 3.8S6 18 6 16v-4.6Z"/></svg>
+          Student
+        </button>
+        <button class="nav-item" type="button" data-page="feesPage">
+          <svg viewBox="0 0 24 24"><path d="M4.5 6.5h13.8c1.3 0 2.2.9 2.2 2.2v8.6c0 1.3-.9 2.2-2.2 2.2H4.5c-1.7 0-3-1.3-3-3v-9c0-1.7 1.3-3 3-3h12.2v2H4.5Zm12.8 6.8a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z"/></svg>
+          Fees
+        </button>
+        <button class="nav-item" type="button" data-page="leavePage">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a3 3 0 0 1 3 3v14.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 19.5V5a3 3 0 0 1 3-3Zm1 5v2h8V7H8Zm0 4v2h8v-2H8Zm0 4v2h5v-2H8Z"/></svg>
+          Leave Form
+        </button>
+      </nav>
+    </aside>
+
+    <div class="main-area">
+      <header class="top-header">
+        <div class="header-actions" aria-label="Portal actions">
+          <!-- Moon icon dark mode toggle in top-right -->
+          <button class="moon-toggle-btn" id="darkModeToggle" type="button" aria-label="Switch to dark mode" title="Toggle dark mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <section class="page-view active" id="studentPage">
+          <div class="panel">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">Student Section</span>
+                <h2><span class="page-heading-icon" aria-hidden="true">🎓</span>Student Management</h2>
+              </div>
+              <button class="primary-button" type="button" data-open-student>
+                <svg viewBox="0 0 24 24"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z"/></svg>
+                Add Student
+              </button>
+            </div>
+            <div class="toolbar">
+              <label class="search-box">
+                <svg viewBox="0 0 24 24"><path d="m20.7 19.3-4.2-4.2a7.5 7.5 0 1 0-1.4 1.4l4.2 4.2 1.4-1.4ZM5.5 10.5a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+                <input id="studentSearch" type="search" placeholder="Search student, ID, department..." />
+              </label>
+              <select id="studentFilter" aria-label="Filter students">
+                <option value="All">All Departments</option>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="AI & DS">AI &amp; DS</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Civil">Civil</option>
+              </select>
+            </div>
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Profile</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+                <tbody id="studentRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-view" id="feesPage">
+          <div class="fees-management-portal">
+            <!-- Fee Summary Section -->
+            <div class="fee-summary-section">
+              <div class="summary-header">
+                <div>
+                  <span class="eyebrow">Fees Section</span>
+                  <h2>College Fee Payment System</h2>
+                  <p>Manage and pay your college fees securely through our online payment portal</p>
+                </div>
+              </div>
+              
+              <div class="fee-summary-cards">
+                <div class="summary-card">
+                  <div class="summary-card-icon">💰</div>
+                  <div class="summary-card-content">
+                    <span class="summary-label">Total College Fees</span>
+                    <strong class="summary-value" id="totalCollegeFees">₹2,70,000</strong>
+                  </div>
+                </div>
+                <div class="summary-card">
+                  <div class="summary-card-icon">✓</div>
+                  <div class="summary-card-content">
+                    <span class="summary-label">Total Paid</span>
+                    <strong class="summary-value paid-text" id="totalPaid">₹1,15,000</strong>
+                  </div>
+                </div>
+                <div class="summary-card">
+                  <div class="summary-card-icon">⏳</div>
+                  <div class="summary-card-content">
+                    <span class="summary-label">Total Pending</span>
+                    <strong class="summary-value pending-text" id="totalPending">₹1,55,000</strong>
+                  </div>
+                </div>
+                <div class="summary-card">
+                  <div class="summary-card-icon">📅</div>
+                  <div class="summary-card-content">
+                    <span class="summary-label">Next Due Date</span>
+                    <strong class="summary-value" id="nextDueDate">30 Jun 2026</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fee Categories Section -->
+            <div class="panel fee-categories-section">
+              <h2>Fee Categories</h2>
+              
+              <!-- Semester Fee Card -->
+              <div class="fee-category-card semester-card">
+                <div class="category-header">
+                  <div class="category-title">
+                    <span class="category-icon">🎓</span>
+                    <div>
+                      <h3>Semester Fee</h3>
+                      <p class="category-description">Regular semester tuition and academic fees</p>
+                    </div>
+                  </div>
+                  <span class="category-status paid">Partially Paid</span>
+                </div>
+                <div class="category-highlight-card">
+                  <div class="highlight-icon">💡</div>
+                  <p class="highlight-text">Semester fee due soon — pay ₹17,500 by <strong>30 Jun 2026</strong></p>
+                </div>
+                <div class="fee-details-grid">
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Total Amount</span>
+                    <strong class="detail-value" id="semesterTotal">₹45,500</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Paid Amount</span>
+                    <strong class="detail-value" id="semesterPaid">₹28,000</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Pending Amount</span>
+                    <strong class="detail-value" id="semesterPending">₹17,500</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Due Date</span>
+                    <strong class="detail-value" id="semesterDueDate">30 Jun 2026</strong>
+                  </div>
+                </div>
+
+                <div class="payment-progress-section">
+                  <div class="progress-label">Payment Status</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill paid" style="width: 61.5%;" title="Paid"></div>
+                    <div class="progress-fill pending" style="width: 38.5%;" title="Pending"></div>
+                  </div>
+                  <div class="progress-legend">
+                    <span class="legend-item"><span class="legend-color paid"></span>Paid (61.5%)</span>
+                    <span class="legend-item"><span class="legend-color pending"></span>Pending (38.5%)</span>
+                  </div>
+                </div>
+
+                <button class="pay-now-button" type="button" data-fee-type="semester" data-amount="17500">
+                  <svg viewBox="0 0 24 24"><path d="M4.5 6.5h13.8c1.3 0 2.2.9 2.2 2.2v8.6c0 1.3-.9 2.2-2.2 2.2H4.5c-1.7 0-3-1.3-3-3v-9c0-1.7 1.3-3 3-3h12.2v2H4.5Zm12.8 6.8a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z"/></svg>
+                  Pay Now
+                </button>
+              </div>
+
+              <!-- Transport Fee Card -->
+              <div class="fee-category-card transport-card">
+                <div class="category-header">
+                  <div class="category-title">
+                    <span class="category-icon">🚌</span>
+                    <div>
+                      <h3>Transport Fee</h3>
+                      <p class="category-description">Bus route and transportation charges</p>
+                    </div>
+                  </div>
+                  <span class="category-status pending">Not Paid</span>
+                </div>
+                <div class="category-highlight-card">
+                  <div class="highlight-icon">🛣️</div>
+                  <p class="highlight-text">Transport fees pending — ₹12,000 outstanding. Contact transport office for route changes.</p>
+                </div>
+                <div class="fee-details-grid">
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Bus Route Number</span>
+                    <strong class="detail-value" id="busRoute">Route #12 (North)</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Total Amount</span>
+                    <strong class="detail-value" id="transportTotal">₹12,000</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Paid Amount</span>
+                    <strong class="detail-value" id="transportPaid">₹0</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Pending Amount</span>
+                    <strong class="detail-value" id="transportPending">₹12,000</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Due Date</span>
+                    <strong class="detail-value" id="transportDueDate">30 Jun 2026</strong>
+                  </div>
+                </div>
+
+                <div class="payment-progress-section">
+                  <div class="progress-label">Payment Status</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill pending" style="width: 100%;" title="Pending"></div>
+                  </div>
+                  <div class="progress-legend">
+                    <span class="legend-item"><span class="legend-color pending"></span>Pending (100%)</span>
+                  </div>
+                </div>
+
+                <button class="pay-now-button" type="button" data-fee-type="transport" data-amount="12000">
+                  <svg viewBox="0 0 24 24"><path d="M4.5 6.5h13.8c1.3 0 2.2.9 2.2 2.2v8.6c0 1.3-.9 2.2-2.2 2.2H4.5c-1.7 0-3-1.3-3-3v-9c0-1.7 1.3-3 3-3h12.2v2H4.5Zm12.8 6.8a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z"/></svg>
+                  Pay Now
+                </button>
+              </div>
+
+              <!-- Examination Fee Card -->
+              <div class="fee-category-card exam-card">
+                <div class="category-header">
+                  <div class="category-title">
+                    <span class="category-icon">📝</span>
+                    <div>
+                      <h3>Examination Fee</h3>
+                      <p class="category-description">Regular semester exam registration fees</p>
+                    </div>
+                  </div>
+                  <span class="category-status pending">Pending</span>
+                </div>
+                <div class="category-highlight-card">
+                  <div class="highlight-icon">⚠️</div>
+                  <p class="highlight-text">Examination fee pending — ₹8,000 due by <strong>15 Jun 2026</strong>. Register for exams before the deadline.</p>
+                </div>
+                <div class="fee-details-grid">
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Exam Type</span>
+                    <strong class="detail-value" id="examType">Regular</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Total Amount</span>
+                    <strong class="detail-value" id="examTotal">₹8,000</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Paid Amount</span>
+                    <strong class="detail-value" id="examPaid">₹0</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Due Date</span>
+                    <strong class="detail-value" id="examDueDate">15 Jun 2026</strong>
+                  </div>
+                  <div class="fee-detail-item">
+                    <span class="detail-label">Payment Status</span>
+                    <strong class="detail-value"><span class="status-pill pending">Pending</span></strong>
+                  </div>
+                </div>
+
+                <div class="payment-progress-section">
+                  <div class="progress-label">Payment Status</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill pending" style="width: 100%;" title="Pending"></div>
+                  </div>
+                  <div class="progress-legend">
+                    <span class="legend-item"><span class="legend-color pending"></span>Pending (100%)</span>
+                  </div>
+                </div>
+
+                <button class="pay-now-button" type="button" data-fee-type="examination" data-amount="8000">
+                  <svg viewBox="0 0 24 24"><path d="M4.5 6.5h13.8c1.3 0 2.2.9 2.2 2.2v8.6c0 1.3-.9 2.2-2.2 2.2H4.5c-1.7 0-3-1.3-3-3v-9c0-1.7 1.3-3 3-3h12.2v2H4.5Zm12.8 6.8a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Z"/></svg>
+                  Pay Now
+                </button>
+              </div>
+            </div>
+
+            <!-- Payment History Section -->
+            <div class="panel payment-history-section">
+              <h2>Payment History</h2>
+              <p class="history-description">View all your past fee payments and download receipts</p>
+              
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Receipt Number</th>
+                      <th>Fee Type</th>
+                      <th>Amount Paid</th>
+                      <th>Payment Date</th>
+                      <th>Payment Method</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="paymentHistoryRows">
+                    <tr>
+                      <td><strong>RCPT-2601</strong></td>
+                      <td>Semester Fee</td>
+                      <td>₹20,000</td>
+                      <td>01 Jun 2026</td>
+                      <td><span class="payment-method-tag">UPI</span></td>
+                      <td><button class="download-receipt-btn" type="button" title="Download receipt">📥</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>RCPT-2602</strong></td>
+                      <td>Semester Fee</td>
+                      <td>₹8,000</td>
+                      <td>25 May 2026</td>
+                      <td><span class="payment-method-tag">Debit Card</span></td>
+                      <td><button class="download-receipt-btn" type="button" title="Download receipt">📥</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-view" id="leavePage">
+          <div class="leave-page-shell">
+            <div class="page-header leave-page-header">
+              <div>
+                <span class="eyebrow">Leave Section</span>
+                <h2>Leave History</h2>
+              </div>
+              <button class="primary-button register-leave-button" id="openLeaveRegisterBtn" type="button">Register Leave</button>
+            </div>
+            <div class="panel">
+              <div class="table-shell small-table">
+                <table>
+                  <thead><tr><th>Leave ID</th><th>Leave Type</th><th>From Date</th><th>To Date</th><th>Status</th></tr></thead>
+                  <tbody id="leaveRows">
+                    <tr><td>LV-1024</td><td>Medical Leave</td><td>20 May 2026</td><td>22 May 2026</td><td><span class="status-pill paid">Approved</span></td></tr>
+                    <tr><td>LV-1025</td><td>On-Duty Leave</td><td>27 May 2026</td><td>28 May 2026</td><td><span class="status-pill partial">Pending</span></td></tr>
+                    <tr><td>LV-1026</td><td>Personal Leave</td><td>15 May 2026</td><td>15 May 2026</td><td><span class="status-pill pending">Rejected</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="studentModal" aria-hidden="true">
+    <div class="student-modal" role="dialog" aria-modal="true" aria-labelledby="studentModalTitle">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">New Record</span>
+          <h2 id="studentModalTitle">Add Student</h2>
+        </div>
+        <button class="modal-close close-modal" type="button" aria-label="Close add student modal">×</button>
+      </div>
+      <form id="studentForm" novalidate>
+        <label class="upload-card">
+          <input id="profileUpload" type="file" accept="image/*" />
+          <img id="profilePreview" alt="" />
+          <span>Upload Profile Image</span>
+        </label>
+        <div class="form-grid">
+          <div class="field"><label>Student ID</label><input id="studentId" required placeholder="KAMP2026001" /></div>
+          <div class="field"><label>Student Name</label><input id="studentName" required placeholder="Student full name" /></div>
+          <div class="field"><label>Department</label><select id="studentDept" required><option value="">Select</option><option>CSE</option><option>IT</option><option>AI &amp; DS</option><option>ECE</option><option>EEE</option><option>Mechanical</option><option>Civil</option></select></div>
+          <div class="field"><label>Year</label><select id="studentYear" required><option value="">Select</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select></div>
+          <div class="field full"><label>Category</label><select id="studentCategory" required><option value="">Select</option><option>Day Scholar</option><option>Hostel Student</option><option>Scholarship Student</option></select></div>
+        </div>
+        <p class="form-error" id="studentError" aria-live="polite"></p>
+        <div class="modal-actions">
+          <button class="ghost-button close-modal" type="button">Cancel</button>
+          <button class="primary-button" type="submit">Save Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup-backdrop" id="leaveSuccessPopup" aria-hidden="true">
+    <div class="success-popup" role="dialog" aria-modal="true">
+      <div class="success-check">✓</div>
+      <h2>Leave request submitted</h2>
+      <p>Your request is now pending faculty review.</p>
+      <button class="primary-button" type="button" id="closeLeaveSuccess">Done</button>
+    </div>
+  </div>
+
+  <div class="popup-backdrop" id="paymentModal" aria-hidden="true">
+    <div class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle">
+      <button class="modal-close" type="button" id="closePaymentModal" aria-label="Close payment modal">×</button>
+      
+      <div class="modal-header">
+        <h2 id="paymentModalTitle">Complete Payment</h2>
+        <p class="modal-subtitle">Professional payment gateway for secure transactions</p>
+      </div>
+
+      <div class="modal-content">
+        <!-- Student & Payment Info -->
+        <div class="payment-info-section">
+          <div class="info-card">
+            <span class="info-label">Student Name</span>
+            <strong class="info-value" id="modalStudentName">Aarav Kumar</strong>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Register Number</span>
+            <strong class="info-value" id="modalStudentReg">KAMP2026001</strong>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Fee Type</span>
+            <strong class="info-value" id="modalFeeType">Semester Fee</strong>
+          </div>
+          <div class="info-card highlight">
+            <span class="info-label">Amount to Pay</span>
+            <strong class="info-value amount-display" id="modalAmount">₹17,500</strong>
+          </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-methods-container">
+          <h3 class="methods-title">Select Payment Method</h3>
+          <div class="payment-methods-grid">
+            <label class="payment-method-option">
+              <input type="radio" name="paymentMethod" value="upi" />
+              <span class="method-label">💰 UPI</span>
+              <span class="method-desc">Google Pay, PhonePe, Paytm</span>
+            </label>
+            <label class="payment-method-option">
+              <input type="radio" name="paymentMethod" value="debitcard" />
+              <span class="method-label">💳 Debit Card</span>
+              <span class="method-desc">Visa, Mastercard, RuPay</span>
+            </label>
+            <label class="payment-method-option">
+              <input type="radio" name="paymentMethod" value="creditcard" />
+              <span class="method-label">💳 Credit Card</span>
+              <span class="method-desc">Visa, Mastercard, Amex</span>
+            </label>
+            <label class="payment-method-option">
+              <input type="radio" name="paymentMethod" value="netbanking" />
+              <span class="method-label">🏦 Net Banking</span>
+              <span class="method-desc">All major banks</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Security Info -->
+        <div class="security-info">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <span>Secure 256-bit SSL encrypted payment gateway. Your information is protected.</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="modal-actions">
+          <button class="cancel-button" type="button" id="cancelPaymentBtn">Cancel</button>
+          <button class="confirm-payment-btn" type="button" id="confirmPaymentBtn">Confirm Payment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="leaveFormModal" aria-hidden="true">
+    <div class="student-modal leave-modal" role="dialog" aria-modal="true" aria-labelledby="leaveModalTitle">
+      <h2 id="leaveModalTitle" class="visually-hidden">Leave Registration Form</h2>
+      <div class="modal-head">
+        <div>
+          <p class="modal-tag">Leave Registration</p>
+        </div>
+        <button class="modal-close close-leave-modal" type="button" aria-label="Close leave registration modal">×</button>
+      </div>
+      <form id="leaveForm" novalidate>
+        <div class="floating-field"><input id="leaveName" required placeholder=" " /><label>Student Name</label></div>
+        <div class="floating-field"><input id="leaveId" required placeholder=" " /><label>Student ID</label></div>
+        <div class="floating-field">
+          <select id="leaveDept" required>
+            <option value="" selected disabled></option><option>CSE</option><option>IT</option><option>AI &amp; DS</option><option>ECE</option><option>EEE</option><option>Mechanical</option><option>Civil</option>
+          </select>
+          <label>Department</label>
+        </div>
+        <div class="floating-field">
+          <select id="leaveType" required>
+            <option value="" selected disabled></option><option>Medical Leave</option><option>Personal Leave</option><option>Emergency Leave</option><option>On-Duty Leave</option>
+          </select>
+          <label>Leave Type</label>
+        </div>
+        <div class="date-grid">
+          <div class="floating-field"><input id="fromDate" type="date" required placeholder=" " /><label>From Date</label></div>
+          <div class="floating-field"><input id="toDate" type="date" required placeholder=" " /><label>To Date</label></div>
+        </div>
+        <div class="floating-field"><textarea id="leaveReason" required placeholder=" "></textarea><label>Reason</label></div>
+        <p class="form-error" id="leaveError" aria-live="polite"></p>
+        <div class="modal-actions">
+          <button class="ghost-button close-leave-modal" type="button">Cancel</button>
+          <button class="primary-button" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup-backdrop" id="paymentSuccessModal" aria-hidden="true">
+    <div class="success-modal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+      <div class="success-icon-wrapper">✓</div>
+      <h2 id="successTitle">Payment Successful!</h2>
+      <p class="success-subtitle">Your payment has been processed successfully</p>
+      
+      <div class="success-details-card">
+        <div class="detail-row">
+          <span>Transaction ID</span>
+          <strong id="successTransactionId">TXN-0000000000</strong>
+        </div>
+        <div class="detail-row">
+          <span>Amount Paid</span>
+          <strong id="successAmount">₹17,500</strong>
+        </div>
+        <div class="detail-row">
+          <span>Fee Type</span>
+          <strong id="successFeeType">Semester Fee</strong>
+        </div>
+        <div class="detail-row">
+          <span>Payment Method</span>
+          <strong id="successMethod">UPI</strong>
+        </div>
+        <div class="detail-row">
+          <span>Date & Time</span>
+          <strong id="successDateTime">01 Jun 2026, 2:30 PM</strong>
+        </div>
+      </div>
+
+      <div class="success-actions">
+        <button class="secondary-button" type="button" id="downloadReceiptBtn">📥 Download Receipt</button>
+        <button class="primary-button" type="button" id="backToFeesBtn">Back to Fees</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="success-toast" id="successToast" role="status" aria-live="polite">Saved successfully</div>
+  <script src="student.js"></script>
+</body>
+</html>
