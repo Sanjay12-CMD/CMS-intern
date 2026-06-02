@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #12052d;
+  color: #1f1b35;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: radial-gradient(circle at top left, rgba(178, 145, 255, 0.22), transparent 26rem),
+    radial-gradient(circle at bottom right, rgba(255, 215, 132, 0.14), transparent 26rem),
+    linear-gradient(180deg, #f8f4fc 0%, #fef9f5 45%, #f7f0ff 100%);
+  color: #251633;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem 1.5rem;
+  border-right: 1px solid rgba(201, 152, 43, 0.18);
+  background: linear-gradient(180deg, #2c0f67 0%, #390969 50%, #1a073f 100%);
+  box-shadow: 0 30px 70px rgba(24, 8, 74, 0.3);
+}
+
+.app-sidebar-brand {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.app-sidebar-logo {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #ffffff;
+  padding: 0.25rem;
+}
+
+.app-sidebar-icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f7d577;
+}
+
+.app-eyebrow,
+.app-sidebar-heading {
+  margin: 0 0 0.6rem;
+  color: #f5e8ff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.app-sidebar-brand h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.app-sidebar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.app-sidebar-links {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.app-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5e6ff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.app-sidebar-link:hover,
+.app-sidebar-link.is-active {
+  transform: translateX(2px);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 215, 132, 0.28);
+  color: #ffffff;
+}
+
+.app-sidebar-link span {
+  flex: 1;
+  text-align: left;
+}
+
+.app-sidebar-footer {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.app-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.app-menu-group {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.app-menu-group-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5e6ff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.22s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.app-menu-group-title:hover,
+.app-menu-group-title.is-active-group {
+  transform: translateX(1px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 215, 132, 0.2);
+}
+
+.app-menu-group-title span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-submenu {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 1.1rem;
+}
+
+.app-submenu-link {
+  width: 100%;
+  border: 0;
+  border-radius: 0.95rem;
+  padding: 0.78rem 0.95rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e8dcff;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.app-submenu-link:hover,
+.app-submenu-link.is-active {
+  transform: translateX(2px);
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.app-main {
+  min-height: 100vh;
+  padding: 2rem 2rem 2rem 1.75rem;
+}
+
+.app-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.35rem 1.35rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(201, 152, 43, 0.18);
+  box-shadow: 0 20px 50px rgba(58, 38, 86, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.app-topbar-copy h2 {
+  margin: 0.25rem 0 0.55rem;
+  color: #2b1d48;
+  font-size: clamp(1.6rem, 2.25vw, 2.4rem);
+  line-height: 1.05;
+}
+
+.app-topbar-copy p {
+  margin: 0;
+  color: #54456f;
+  max-width: 54rem;
+  line-height: 1.65;
+}
+
+.app-search {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 17rem;
+  padding: 0.88rem 1rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(142, 107, 190, 0.18);
+}
+
+.app-search input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #251633;
+  font: inherit;
+}
+
+.app-content {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.app-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 1.75rem 1.75rem 1.75rem 1.75rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(201, 152, 43, 0.16);
+  box-shadow: 0 26px 70px rgba(58, 38, 86, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.app-hero h2 {
+  margin: 0.3rem 0 0.8rem;
+  font-size: clamp(2rem, 2.4vw, 2.8rem);
+  color: #2a1544;
+  line-height: 1.05;
+}
+
+.app-hero p {
+  margin: 0;
+  color: #4c3c67;
+  max-width: 48rem;
+  line-height: 1.7;
+}
+
+.app-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.9rem 1rem;
+  border-radius: 999px;
+  background: rgba(201, 152, 43, 0.14);
+  color: #422b72;
+  font-weight: 800;
+  border: 1px solid rgba(201, 152, 43, 0.24);
+}
+
+.app-view {
+  display: block;
+}
+
+@media (max-width: 1120px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+  }
+
+  .app-main {
+    padding: 1.5rem;
+  }
+
+  .app-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-sidebar {
+    padding: 1.25rem;
+  }
+
+  .app-sidebar-link {
+    padding: 0.85rem 0.95rem;
+  }
+
+  .app-hero {
+    padding: 1.25rem;
+  }
+}
