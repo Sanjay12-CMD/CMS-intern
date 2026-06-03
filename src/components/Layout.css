@@ -1,0 +1,115 @@
+/* src/components/Layout.css */
+.layout-container {
+  --text: #111827;
+  --text-light: #4b5563;
+  --bg-light: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background: #ffffff;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .layout-container {
+  background: #ffffff;
+}
+
+.main-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-left: 200px; /* Width of expanded sidebar */
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.sidebar.collapsed ~ .main-wrapper {
+  margin-left: 80px; /* Width of collapsed sidebar */
+}
+
+.main-content {
+  padding: 1.5rem 1rem;
+  flex-grow: 1;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  background: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Staff Directory - No scrolling */
+.main-content.staff-directory-layout {
+  overflow: hidden;
+}
+
+.main-content.staff-directory-layout > * {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Student Marks Entry - Internal vertical scrolling */
+.main-content.staff-marks-entry-layout {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Student Attendance - Internal vertical scrolling */
+.main-content.staff-attendance-layout {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling for scrollable pages */
+.main-content.staff-marks-entry-layout::-webkit-scrollbar,
+.main-content.staff-attendance-layout::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content.staff-marks-entry-layout::-webkit-scrollbar-track,
+.main-content.staff-attendance-layout::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.main-content.staff-marks-entry-layout::-webkit-scrollbar-thumb,
+.main-content.staff-attendance-layout::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.main-content.staff-marks-entry-layout::-webkit-scrollbar-thumb:hover,
+.main-content.staff-attendance-layout::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Tablet Layout (Auto Collapse) */
+@media (max-width: 1024px) {
+  .main-wrapper {
+    margin-left: 80px;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .main-wrapper {
+    margin-left: 0 !important;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+    width: 260px;
+  }
+  
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+}
