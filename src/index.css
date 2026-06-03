@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -108,4 +109,244 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+=======
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap');
+
+/* =================================================================
+   DESIGN SYSTEM: GLOBAL VARIABLES
+   ================================================================= */
+:root {
+  /* Dark Violet Palette */
+  --color-violet-deepest: #090011;
+  --color-violet-darker: #0e001d;
+  --color-violet-dark: #16002f;
+  --color-violet-mid: #25004d;
+  --color-violet-rich: #37006b;
+  --color-violet-medium: #6d28d9;
+  --color-violet-light: #7c3aed;
+  --color-violet-bright: #8b5cf6;
+  --color-violet-glow: rgba(139, 92, 246, 0.15);
+
+  /* Lavender Purple Palette */
+  --color-lavender-deep: #9333ea;
+  --color-lavender-purple: #a855f7;
+  --color-lavender-soft: #c084fc;
+  --color-lavender-light: #e9d5ff;
+  --color-lavender-pale: #f3e8ff;
+  --color-lavender-ghost: rgba(243, 232, 255, 0.05);
+
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-success-bg: rgba(16, 185, 129, 0.1);
+  --color-error: #ef4444;
+  --color-error-bg: rgba(239, 68, 68, 0.1);
+  --color-warning: #f59e0b;
+  --color-warning-bg: rgba(245, 158, 11, 0.1);
+  --color-info: #3b82f6;
+
+  /* Text Colors - Dark Violet Theme */
+  --color-text-primary: #4B0082;
+  --color-text-secondary: #5D3FD3;
+  --color-text-muted: #6D5FA8;
+  --color-text-dark: #16002f;
+  --color-text-hover: #7B2CBF;
+  --color-text-active: #4B0082;
+  --color-text-on-violet: #5D3FD3;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Montserrat', var(--font-sans);
+
+  /* Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 12px 36px -10px rgba(9, 0, 17, 0.6), 0 0 0 1px rgba(139, 92, 246, 0.08);
+  --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.25);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+
+  /* Sidebar details */
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --header-height: 76px;
+}
+
+/* =================================================================
+   BASE RESETS
+   ================================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-violet-deepest);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-violet-deepest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-violet-mid);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-violet-medium);
+}
+
+/* =================================================================
+   UTILITY CLASSES & EFFECTS
+   ================================================================= */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.glass-panel-hover {
+  transition: var(--transition-smooth);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+.glow-text {
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+}
+
+.gradient-text {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.gradient-bg-purple {
+  background: linear-gradient(135deg, var(--color-violet-light) 0%, var(--color-lavender-deep) 100%);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-violet-light) 0%, var(--color-lavender-deep) 100%);
+  color: var(--color-text-dark);
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6), var(--shadow-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Floating background circles */
+.bg-orbs::before,
+.bg-orbs::after {
+  content: '';
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orbs::before {
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  left: -100px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+}
+
+.bg-orbs::after {
+  width: 500px;
+  height: 500px;
+  bottom: 10%;
+  right: -100px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+}
+
+/* =================================================================
+   COMMON ANIMATIONS
+   ================================================================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+>>>>>>> muthumegala
 }

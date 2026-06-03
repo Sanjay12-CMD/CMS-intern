@@ -9,9 +9,13 @@ Currently, two official plugins are available:
 
 ## React Compiler
 
+<<<<<<< HEAD
 The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
 Note: This will impact Vite dev & build performances.
+=======
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+>>>>>>> muthumegala
 
 ## Expanding the ESLint configuration
 
