@@ -2610,3 +2610,7 @@ tbody tr:hover {
     width: 100%;
   }
 }
+
+.leave-modal .modal-actions {
+  justify-content: flex-end;
+}

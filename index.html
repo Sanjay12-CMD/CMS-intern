@@ -22,10 +22,6 @@
   <div class="app-shell">
     <aside class="sidebar" aria-label="Portal navigation">
       <nav class="sidebar-nav">
-        <button class="nav-item" type="button" data-page="studentPage">
-          <svg viewBox="0 0 24 24"><path d="M3 12.2 12 4l9 8.2v7.3c0 .8-.7 1.5-1.5 1.5h-5v-6h-5v6h-5C3.7 21 3 20.3 3 19.5v-7.3Z"/></svg>
-          Dashboard
-        </button>
         <button class="nav-item active" type="button" data-page="studentPage">
           <svg viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5Zm-6 8.4 6 3 6-3V16c0 2-2.7 3.8-6 3.8S6 18 6 16v-4.6Z"/></svg>
           Student
@@ -514,16 +510,15 @@
       </div>
       <form id="leaveForm" novalidate>
         <div class="floating-field"><input id="leaveName" required placeholder=" " /><label>Student Name</label></div>
-        <div class="floating-field"><input id="leaveId" required placeholder=" " /><label>Student ID</label></div>
-        <div class="floating-field">
-          <select id="leaveDept" required>
-            <option value="" selected disabled></option><option>CSE</option><option>IT</option><option>AI &amp; DS</option><option>ECE</option><option>EEE</option><option>Mechanical</option><option>Civil</option>
-          </select>
-          <label>Department</label>
-        </div>
+        <div class="floating-field"><input id="leaveRegNo" required placeholder=" " /><label>Register Number</label></div>
+        <div class="floating-field"><input id="leaveDept" required placeholder=" " /><label>Department</label></div>
+        <div class="floating-field"><input id="leaveYear" required placeholder=" " /><label>Year/Semester</label></div>
         <div class="floating-field">
           <select id="leaveType" required>
-            <option value="" selected disabled></option><option>Medical Leave</option><option>Personal Leave</option><option>Emergency Leave</option><option>On-Duty Leave</option>
+            <option value="" selected disabled></option>
+            <option>Casual Leave</option>
+            <option>Medical Leave</option>
+            <option>On Duty</option>
           </select>
           <label>Leave Type</label>
         </div>
@@ -531,10 +526,9 @@
           <div class="floating-field"><input id="fromDate" type="date" required placeholder=" " /><label>From Date</label></div>
           <div class="floating-field"><input id="toDate" type="date" required placeholder=" " /><label>To Date</label></div>
         </div>
-        <div class="floating-field"><textarea id="leaveReason" required placeholder=" "></textarea><label>Reason</label></div>
+        <div class="floating-field"><textarea id="leaveReason" required placeholder=" "></textarea><label>Reason for Leave</label></div>
         <p class="form-error" id="leaveError" aria-live="polite"></p>
         <div class="modal-actions">
-          <button class="ghost-button close-leave-modal" type="button">Cancel</button>
           <button class="primary-button" type="submit">Submit</button>
         </div>
       </form>

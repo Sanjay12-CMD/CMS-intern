@@ -124,8 +124,29 @@ function formatDate(value) {
   });
 }
 
+const leaveFormModal = $("#leaveFormModal");
+const openLeaveRegisterBtn = $("#openLeaveRegisterBtn");
+
+function openLeaveModal() {
+  if (currentStudent) {
+    $("#leaveName").value = currentStudent.name || "";
+    $("#leaveRegNo").value = currentStudent.id || "";
+    $("#leaveDept").value = currentStudent.dept || "";
+    $("#leaveYear").value = currentStudent.year || "";
+  }
+  leaveFormModal.classList.add("open");
+  leaveFormModal.setAttribute("aria-hidden", "false");
+}
+
+function closeLeaveModal() {
+  leaveFormModal.classList.remove("open");
+  leaveFormModal.setAttribute("aria-hidden", "true");
+  $("#leaveForm").reset();
+  $("#leaveError").textContent = "";
+}
+
 $$(".nav-item").forEach((item) => {
-  item.addEventListener("click", () => showPage(item.dataset.page));
+  item.addEventListener("click", () => showPage(item.dataset.page, item));
 });
 
 $$("[data-open-student]").forEach((button) => button.addEventListener("click", openStudentModal));
@@ -135,9 +156,22 @@ studentModal.addEventListener("click", (event) => {
   if (event.target === studentModal) closeStudentModal();
 });
 
+if (openLeaveRegisterBtn) {
+  openLeaveRegisterBtn.addEventListener("click", openLeaveModal);
+}
+
+$$(".close-leave-modal").forEach((button) => {
+  button.addEventListener("click", closeLeaveModal);
+});
+
+leaveFormModal.addEventListener("click", (event) => {
+  if (event.target === leaveFormModal) closeLeaveModal();
+});
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     if (studentModal.classList.contains("open")) closeStudentModal();
+    if (leaveFormModal.classList.contains("open")) closeLeaveModal();
     if (leaveSuccessPopup.classList.contains("open")) closeLeaveSuccess();
     if (paymentDetailPage.classList.contains("open")) closePaymentDetail();
     if (paymentSuccessPage.classList.contains("open")) closePaymentSuccess();
@@ -576,10 +610,8 @@ $("#leaveForm").addEventListener("submit", (event) => {
     `
   );
 
-  form.reset();
-  errorNode.textContent = "";
-  leaveSuccessPopup.classList.add("open");
-  leaveSuccessPopup.setAttribute("aria-hidden", "false");
+  closeLeaveModal();
+  showToast("Leave Application Submitted Successfully");
 });
 
 function closeLeaveSuccess() {
