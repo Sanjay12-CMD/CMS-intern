@@ -1,0 +1,902 @@
+/* =================================================================
+   COLOR SYSTEM & VARIABLES
+   ================================================================= */
+:root {
+  /* ── Dark Violet palette ── */
+  --color-dark-violet-deepest: #0d0015;
+  --color-dark-violet-deep: #160028;
+  --color-dark-violet: #1d003b;
+  --color-dark-violet-mid: #2a0052;
+  --color-violet-rich: #3b0070;
+  --color-violet-medium: #6d28d9;
+  --color-violet-light: #7c3aed;
+  --color-violet-bright: #8b5cf6;
+
+  /* ── Lavender Purple palette ── */
+  --color-lavender-deep: #9333ea;
+  --color-lavender-purple: #a855f7;
+  --color-lavender-soft: #c084fc;
+  --color-lavender-light: #e9d5ff;
+  --color-lavender-pale: #f3e8ff;
+
+  /* ── Accent & Status ── */
+  --color-success: #10b981;
+  --color-success-bg: rgba(16, 185, 129, 0.1);
+  --color-error: #f87171;
+  --color-error-bg: rgba(248, 113, 113, 0.1);
+  --color-gold: #f59e0b;
+
+  --color-text-primary: #4B0082;
+  --color-text-secondary: #5D3FD3;
+  --color-text-muted: #6D5FA8;
+  --color-text-dark: #16002f;
+  --color-text-hover: #7B2CBF;
+  --color-text-active: #4B0082;
+
+  /* ── Typography ── */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Montserrat', var(--font-sans);
+
+  /* ── Transitions ── */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+  --transition-spring: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.15);
+  --shadow-card: 0 20px 60px -15px rgba(13, 0, 21, 0.5), 0 0 0 1px rgba(139, 92, 246, 0.08);
+
+  /* ── Radii ── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+/* =================================================================
+   BASE RESETS
+   ================================================================= */
+.login-page-wrapper *,
+.dashboard-layout-root * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+}
+
+/* =================================================================
+   LOGIN PAGE — DARK VIOLET BACKGROUND
+   ================================================================= */
+.login-page-wrapper {
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #f3e8ff;
+  --color-text-muted: #ddd6fe;
+  --color-text-dark: #ffffff;
+  --color-text-hover: #ffffff;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    var(--color-dark-violet-deepest) 0%,
+    var(--color-dark-violet) 35%,
+    var(--color-dark-violet-mid) 65%,
+    var(--color-violet-rich) 100%
+  );
+}
+
+/* ── Animated floating orbs ── */
+.login-page-wrapper::before,
+.login-page-wrapper::after {
+  content: '';
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.login-page-wrapper::before {
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  left: -150px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  animation: float-orb-1 18s infinite alternate ease-in-out;
+}
+
+.login-page-wrapper::after {
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+  animation: float-orb-2 22s infinite alternate-reverse ease-in-out;
+}
+
+/* ── Subtle grid pattern overlay ── */
+.login-page-wrapper .login-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes float-orb-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 50px) scale(1.15); }
+  100% { transform: translate(-30px, -40px) scale(0.95); }
+}
+
+@keyframes float-orb-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, -60px) scale(1.1); }
+  100% { transform: translate(50px, 30px) scale(0.9); }
+}
+
+/* =================================================================
+   TOP BRANDING (Logo + College Name)
+   ================================================================= */
+.login-top-brand {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 36px;
+  max-width: 600px;
+  animation: fade-down 0.8s var(--transition-spring) forwards;
+}
+
+.login-top-brand .brand-logo {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 8px 24px rgba(139, 92, 246, 0.3));
+  transition: transform 0.4s ease;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px;
+  border: 1.5px solid rgba(139, 92, 246, 0.2);
+}
+
+.login-top-brand .brand-logo:hover {
+  transform: scale(1.08) rotate(2deg);
+}
+
+.login-top-brand .brand-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 850;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* =================================================================
+   LOGIN CARD — GLASSMORPHISM
+   ================================================================= */
+.login-card-wrapper-centered {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  animation: card-appear 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.login-card-container {
+  background: rgba(22, 0, 47, 0.5);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.login-card-container:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 30px 70px -15px rgba(13, 0, 21, 0.6),
+    0 0 0 1px rgba(139, 92, 246, 0.15),
+    var(--shadow-glow);
+}
+
+.login-card-header-inner {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.login-card-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* =================================================================
+   FORM & INPUT FIELDS
+   ================================================================= */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.input-icon-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-md);
+  padding: 0 16px;
+  height: 52px;
+  transition: var(--transition-fast);
+}
+
+.input-icon-wrapper:focus-within {
+  border-color: var(--color-violet-bright);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15), var(--shadow-glow);
+}
+
+.input-icon-wrapper.input-error {
+  border-color: var(--color-error);
+}
+
+.input-icon-wrapper.input-error:focus-within {
+  box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.15);
+}
+
+.input-icon {
+  color: var(--color-text-secondary);
+  margin-right: 12px;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.input-icon-wrapper:focus-within .input-icon {
+  color: var(--color-text-hover);
+}
+
+.input-icon-wrapper input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.input-icon-wrapper input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Autofill fix for dark backgrounds */
+.input-icon-wrapper input:-webkit-autofill,
+.input-icon-wrapper input:-webkit-autofill:hover,
+.input-icon-wrapper input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text-primary);
+  -webkit-box-shadow: 0 0 0px 1000px rgba(29, 0, 59, 0.9) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.error-message {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-error);
+  margin-top: 2px;
+}
+
+/* =================================================================
+   LOGIN BUTTON
+   ================================================================= */
+.btn-login {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-text-dark);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: var(--transition-fast);
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+.student-theme-btn,
+.staff-theme-btn {
+  background: linear-gradient(135deg, var(--color-violet-light) 0%, var(--color-lavender-deep) 50%, var(--color-violet-bright) 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.35);
+  animation: gradient-shift 4s ease infinite;
+}
+
+.student-theme-btn:hover,
+.staff-theme-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+}
+
+.student-theme-btn:active,
+.staff-theme-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-login:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* =================================================================
+   SWITCH PORTAL & CREDENTIAL HELPERS
+   ================================================================= */
+.login-card-footer {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.switch-portal-btn {
+  background: none;
+  border: none;
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.switch-portal-btn span {
+  font-weight: 750;
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 4px;
+  transition: color 0.2s ease;
+}
+
+.switch-portal-btn:hover span {
+  color: var(--color-text-hover);
+}
+
+.demo-credentials {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+
+.demo-credentials p {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.code-chip {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: var(--color-text-secondary);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-weight: bold;
+  font-size: 0.72rem;
+}
+
+/* ── Status Banners ── */
+.auth-error-banner,
+.auth-success-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.825rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  animation: slide-in 0.3s ease forwards;
+}
+
+.auth-error-banner {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  color: var(--color-error);
+}
+
+.auth-success-banner {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: var(--color-success);
+}
+
+/* =================================================================
+   DASHBOARD LAYOUT ROOT
+   ================================================================= */
+.dashboard-layout-root {
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #f3e8ff;
+  --color-text-muted: #ddd6fe;
+  --color-text-dark: #ffffff;
+  --color-text-hover: #ffffff;
+  --color-text-active: #ffffff;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    #4B0082 0%,
+    #5D3FD3 48%,
+    #7B2CBF 100%
+  );
+}
+
+/* =================================================================
+   DASHBOARD HEADER — LAVENDER PURPLE
+   ================================================================= */
+.dashboard-header-bar {
+  background: linear-gradient(
+    135deg,
+    #3b0070 0%,
+    #5D3FD3 55%,
+    #7B2CBF 100%
+  );
+  color: var(--color-text-primary);
+  height: 70px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 24px rgba(139, 92, 246, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-college-logo {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.header-college-logo:hover {
+  transform: scale(1.05);
+}
+
+.header-title-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-college-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  color: var(--color-text-primary);
+}
+
+.header-right {
+  position: relative;
+}
+
+/* ── Three dots menu button ── */
+.three-dots-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.three-dots-btn:hover,
+.three-dots-btn.active {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: scale(1.05);
+}
+
+/* ── Dropdown menu ── */
+.dropdown-menu-list {
+  position: absolute;
+  right: 0;
+  top: 52px;
+  background: #5D3FD3;
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  border-radius: var(--radius-md);
+  width: 200px;
+  box-shadow: 0 12px 32px -4px rgba(13, 0, 21, 0.2), var(--shadow-sm);
+  list-style: none;
+  padding: 6px;
+  animation: dropdown-enter 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 120;
+}
+
+.dropdown-menu-list li button {
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: var(--transition-fast);
+}
+
+.dropdown-menu-list li button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--color-text-hover);
+}
+
+.dropdown-menu-list li button.logout-item {
+  color: var(--color-text-primary);
+}
+
+.dropdown-menu-list li button.logout-item:hover {
+  background: rgba(239, 68, 68, 0.06);
+  color: var(--color-text-hover);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(139, 92, 246, 0.08);
+  margin: 4px 0;
+}
+
+@keyframes dropdown-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* =================================================================
+   SIDEBAR — DARK VIOLET THEMED
+   ================================================================= */
+.dashboard-body-container {
+  display: flex;
+  flex: 1;
+  position: relative;
+  min-height: calc(100vh - 70px);
+}
+
+.dashboard-sidebar-panel {
+  width: 260px;
+  background: linear-gradient(
+    180deg,
+    var(--color-dark-violet) 0%,
+    var(--color-dark-violet-mid) 60%,
+    var(--color-violet-rich) 100%
+  );
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 16px;
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+  box-shadow: 4px 0 24px rgba(13, 0, 21, 0.2);
+  border-right: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.sidebar-college-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 10px 24px 10px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-college-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand-name {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.sidebar-brand-sub {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Sidebar Navigation ── */
+.sidebar-menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.sidebar-menu-btn {
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: left;
+}
+
+.sidebar-menu-btn:hover {
+  color: var(--color-text-hover);
+  background: rgba(75, 0, 130, 0.1);
+}
+
+.sidebar-menu-btn.active {
+  color: var(--color-text-active);
+  background: linear-gradient(135deg, #4B0082 0%, #5D3FD3 100%);
+  box-shadow: 0 4px 16px rgba(75, 0, 130, 0.3);
+}
+
+/* =================================================================
+   MAIN CONTENT — EMPTY
+   ================================================================= */
+.dashboard-main-content {
+  flex: 1;
+  margin-left: 260px;
+  padding: 40px;
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(
+    135deg,
+    rgba(75, 0, 130, 0.92) 0%,
+    rgba(93, 63, 211, 0.88) 55%,
+    rgba(123, 44, 191, 0.92) 100%
+  );
+}
+
+/* =================================================================
+   ANIMATIONS
+   ================================================================= */
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =================================================================
+   RESPONSIVE — TABLET
+   ================================================================= */
+@media (max-width: 900px) {
+  .dashboard-sidebar-panel {
+    width: 72px;
+    padding: 20px 8px;
+  }
+
+  .dashboard-sidebar-panel .sidebar-college-brand {
+    justify-content: center;
+    padding: 0 0 16px 0;
+  }
+
+  .dashboard-sidebar-panel .sidebar-brand-text {
+    display: none;
+  }
+
+  .dashboard-sidebar-panel .sidebar-menu-btn span {
+    display: none;
+  }
+
+  .sidebar-menu-btn {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .dashboard-main-content {
+    margin-left: 72px;
+    padding: 28px;
+  }
+
+  .header-college-name {
+    font-size: 0.8rem;
+  }
+}
+
+/* =================================================================
+   RESPONSIVE — MOBILE
+   ================================================================= */
+@media (max-width: 640px) {
+  .login-page-wrapper {
+    padding: 24px 16px;
+  }
+
+  .login-top-brand .brand-title {
+    font-size: 1.2rem;
+  }
+
+  .login-top-brand .brand-logo {
+    width: 68px;
+    height: 68px;
+  }
+
+  .login-card-container {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+
+  .dashboard-header-bar {
+    padding: 0 16px;
+    height: 60px;
+  }
+
+  .header-college-name {
+    font-size: 0.72rem;
+  }
+
+  .header-college-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dashboard-body-container {
+    flex-direction: column;
+    min-height: calc(100vh - 60px);
+  }
+
+  .dashboard-sidebar-panel {
+    position: static;
+    width: 100%;
+    flex-direction: row;
+    height: auto;
+    padding: 12px 16px;
+    align-items: center;
+    background: linear-gradient(
+      90deg,
+      var(--color-dark-violet) 0%,
+      var(--color-dark-violet-mid) 100%
+    );
+    box-shadow: 0 2px 12px rgba(13, 0, 21, 0.2);
+  }
+
+  .sidebar-college-brand {
+    display: none;
+  }
+
+  .sidebar-menu-nav {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sidebar-menu-btn {
+    padding: 10px 16px;
+    width: auto;
+  }
+
+  .dashboard-main-content {
+    margin-left: 0;
+    padding: 24px 16px;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Building2, CalendarCheck, ChevronDown, Layers, Search } from "lucide-react";
+import { Building2, ChevronDown, Layers, Search } from "lucide-react";
 import HostelManagement from "./hostel/hostel.jsx";
 import CampusFacilities from "./facilities/facilities.jsx";
 import { college } from "./header/header.js";
@@ -42,22 +42,29 @@ const sidebarSections = [
       { id: "wifi-campus", title: "Wi-Fi Campus" },
     ],
   },
-  
 ];
 
 export default function App() {
   const [activeSectionId, setActiveSectionId] = useState("students");
-  const [expandedGroups, setExpandedGroups] = useState({ hostel: true, campus: true });
+  const [expandedGroups, setExpandedGroups] = useState({
+    hostel: true,
+    campus: true,
+  });
   const [searchTerm, setSearchTerm] = useState("");
 
   const activeGroup = useMemo(
-    () => sidebarSections.find((group) => group.items.some((item) => item.id === activeSectionId)) || sidebarSections[0],
-    [activeSectionId],
+    () =>
+      sidebarSections.find((group) =>
+        group.items.some((item) => item.id === activeSectionId)
+      ) || sidebarSections[0],
+    [activeSectionId]
   );
 
   const activeSection = useMemo(
-    () => activeGroup.items.find((item) => item.id === activeSectionId) || activeGroup.items[0],
-    [activeGroup.items, activeSectionId],
+    () =>
+      activeGroup.items.find((item) => item.id === activeSectionId) ||
+      activeGroup.items[0],
+    [activeGroup.items, activeSectionId]
   );
 
   const handleSectionSelect = (sectionId) => {
@@ -68,7 +75,11 @@ export default function App() {
     <div className="app-shell">
       <aside className="app-sidebar">
         <div className="app-sidebar-brand">
-          <img className="app-sidebar-logo" src={college.logo} alt="KAMP College logo" />
+          <img
+            className="app-sidebar-logo"
+            src={college.logo}
+            alt="KAMP College logo"
+          />
           <div>
             <p className="app-eyebrow">KAMP College</p>
             <h1>Dashboard</h1>
@@ -78,27 +89,40 @@ export default function App() {
         <div className="app-sidebar-menu">
           {sidebarSections.map((group) => {
             const Icon = group.icon;
+
             return (
               <div key={group.id} className="app-menu-group">
                 <button
                   type="button"
-                  className={`app-menu-group-title ${activeGroup.id === group.id ? "is-active-group" : ""}`}
-                  onClick={() => setExpandedGroups((prev) => ({ ...prev, [group.id]: !prev[group.id] }))}
+                  className={`app-menu-group-title ${
+                    activeGroup.id === group.id ? "is-active-group" : ""
+                  }`}
+                  onClick={() =>
+                    setExpandedGroups((prev) => ({
+                      ...prev,
+                      [group.id]: !prev[group.id],
+                    }))
+                  }
                 >
                   <span>
                     <Icon size={18} />
                     <span>{group.title}</span>
                   </span>
-                  <ChevronDown className={expandedGroups[group.id] ? "is-open" : ""} size={16} />
+                  <ChevronDown
+                    className={expandedGroups[group.id] ? "is-open" : ""}
+                    size={16}
+                  />
                 </button>
 
                 {expandedGroups[group.id] && (
                   <div className="app-submenu">
                     {group.items.map((item) => (
                       <button
-                        type="button"
                         key={item.id}
-                        className={`app-submenu-link ${activeSectionId === item.id ? "is-active" : ""}`}
+                        type="button"
+                        className={`app-submenu-link ${
+                          activeSectionId === item.id ? "is-active" : ""
+                        }`}
                         onClick={() => handleSectionSelect(item.id)}
                       >
                         {item.title}
@@ -112,23 +136,29 @@ export default function App() {
         </div>
 
         <div className="app-sidebar-footer">
-          <p>One global sidebar, one navbar, one content area — a modern college management interface.</p>
+          <p>
+            One global sidebar, one navbar, one content area — a modern college
+            management interface.
+          </p>
         </div>
       </aside>
 
       <main className="app-main">
         <header className="app-topbar">
           <div className="app-topbar-copy">
-            <p className="app-eyebrow">Dashboard / {activeGroup.title}</p>
+            <p className="app-eyebrow">
+              Dashboard / {activeGroup.title}
+            </p>
             <h2>{activeSection.title}</h2>
             <p>{activeGroup.summary}</p>
           </div>
+
           <label className="app-search">
             <Search size={18} />
             <input
               type="search"
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search the current dashboard"
             />
           </label>
@@ -136,9 +166,15 @@ export default function App() {
 
         <section className="app-content" aria-live="polite">
           {activeGroup.id === "hostel" ? (
-            <HostelManagement activeModuleId={activeSection.id} searchTerm={searchTerm} />
+            <HostelManagement
+              activeModuleId={activeSection.id}
+              searchTerm={searchTerm}
+            />
           ) : activeGroup.id === "campus" ? (
-            <CampusFacilities activeFacilityId={activeSection.id} searchTerm={searchTerm} />
+            <CampusFacilities
+              activeFacilityId={activeSection.id}
+              searchTerm={searchTerm}
+            />
           ) : null}
         </section>
       </main>
