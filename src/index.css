@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap');
+
+/* =================================================================
+   DESIGN SYSTEM: GLOBAL VARIABLES
+   ================================================================= */
+:root {
+  /* Dark Violet Palette */
+  --color-violet-deepest: #090011;
+  --color-violet-darker: #0e001d;
+  --color-violet-dark: #16002f;
+  --color-violet-mid: #25004d;
+  --color-violet-rich: #37006b;
+  --color-violet-medium: #6d28d9;
+  --color-violet-light: #7c3aed;
+  --color-violet-bright: #8b5cf6;
+  --color-violet-glow: rgba(139, 92, 246, 0.15);
+
+  /* Lavender Purple Palette */
+  --color-lavender-deep: #9333ea;
+  --color-lavender-purple: #a855f7;
+  --color-lavender-soft: #c084fc;
+  --color-lavender-light: #e9d5ff;
+  --color-lavender-pale: #f3e8ff;
+  --color-lavender-ghost: rgba(243, 232, 255, 0.05);
+
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+  /* Text Colors */
+  --color-text-primary: #4B0082;
+  --color-text-secondary: #5D3FD3;
+  --color-text-muted: #6D5FA8;
+  --color-text-dark: #16002f;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Montserrat', var(--font-sans);
+
+  /* Transitions */
+  --transition-smooth: all 0.3s ease;
+
+  /* Shadows */
+  --shadow-card: 0 12px 36px -10px rgba(9, 0, 17, 0.6);
+  --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.25);
+
+  /* Radius */
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+}
+
+/* =================================================================
+   BASE RESET
+   ================================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-violet-deepest);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-violet-deepest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-violet-mid);
+  border-radius: var(--radius-full);
+}
+
+/* =================================================================
+   GLASS UI
+   ================================================================= */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.glass-panel-hover {
+  transition: var(--transition-smooth);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-violet-light), var(--color-lavender-deep));
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* Background effects */
+.bg-orbs::before,
+.bg-orbs::after {
+  content: '';
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(120px);
+  z-index: 0;
+}
+
+.bg-orbs::before {
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  left: -100px;
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.bg-orbs::after {
+  width: 500px;
+  height: 500px;
+  bottom: 10%;
+  right: -100px;
+  background: rgba(168, 85, 247, 0.15);
+}

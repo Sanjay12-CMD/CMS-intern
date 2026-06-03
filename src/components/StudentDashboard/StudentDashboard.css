@@ -1,0 +1,543 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  position: relative;
+}
+
+/* =================================================================
+   WELCOME BANNER
+   ================================================================= */
+.welcome-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(141, 92, 246, 0.15) 0%,
+    rgba(168, 85, 247, 0.15) 100%
+  );
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.welcome-banner-details {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.student-profile-avatar-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-violet-light) 0%, var(--color-lavender-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dark);
+  box-shadow: var(--shadow-glow);
+}
+
+.welcome-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 850;
+  color: var(--color-text-primary);
+}
+
+.welcome-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.current-gpa-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+}
+
+.gpa-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gpa-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 850;
+  color: var(--color-text-primary);
+}
+
+/* =================================================================
+   DASHBOARD GRID & CARD LAYOUT
+   ================================================================= */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Double-column spanning for grades table */
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dashboard-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(22, 0, 47, 0.3);
+}
+
+.card-header-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+  padding-bottom: 12px;
+}
+
+.card-icon {
+  color: var(--color-text-hover);
+}
+
+.card-header-with-icon h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+/* Profile details */
+.profile-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile-detail-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.detail-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.truncate-text {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =================================================================
+   ATTENDANCE RADIAL SUMMARY
+   ================================================================= */
+.attendance-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.attendance-radial-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.radial-svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.radial-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 8;
+}
+
+.radial-bar {
+  fill: none;
+  stroke: var(--color-success);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 251.2;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.radial-label-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.percentage-num {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.percentage-desc {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.attendance-details-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attendance-status-good {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-success);
+}
+
+.classes-ratio {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+/* =================================================================
+   GRADES TABLE
+   ================================================================= */
+.grades-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.grades-table th {
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(139, 92, 246, 0.15);
+}
+
+.grades-table td {
+  padding: 12px;
+  font-size: 0.875rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.grades-table tr:hover td {
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.grade-sub-code {
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.grade-sub-title {
+  color: var(--color-text-primary);
+}
+
+.grade-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.grade-O {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--color-warning);
+}
+
+.grade-Aplus {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-success);
+}
+
+.grade-A {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: var(--color-info);
+}
+
+.grade-Bplus {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-text-secondary);
+}
+
+.grade-points {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* =================================================================
+   ASSIGNMENTS LIST
+   ================================================================= */
+.assignment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.assignment-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.assign-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.assign-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.assign-due {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.assign-badge-area {
+  flex-shrink: 0;
+}
+
+.status-badge-submitted {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-success-bg);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: var(--color-success);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge-pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge-pending.priority-high {
+  background: var(--color-error-bg);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: var(--color-error);
+}
+
+.status-badge-pending.priority-medium {
+  background: var(--color-warning-bg);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: var(--color-warning);
+}
+
+/* =================================================================
+   SPLIT BOTTOM: TIMETABLE & NOTIFICATIONS
+   ================================================================= */
+.dashboard-split-layout {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .dashboard-split-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Timetable styling */
+.timetable-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.timetable-table th {
+  padding: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(139, 92, 246, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.period-hdr {
+  min-width: 120px;
+}
+
+.period-time {
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--color-text-muted);
+}
+
+.timetable-table td {
+  padding: 14px 10px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timetable-day-label {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  background: rgba(139, 92, 246, 0.1);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.timetable-subject-cell {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.timetable-subject-cell.lab-period {
+  background: rgba(139, 92, 246, 0.08);
+  color: var(--color-text-hover);
+  font-weight: 600;
+}
+
+/* Announcements styling */
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.announcement-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.announcement-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.announcement-meta {
+  display: flex;
+}
+
+.ann-date {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.ann-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 750;
+  color: var(--color-text-primary);
+}
+
+.ann-desc {
+  font-size: 0.825rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+/* =================================================================
+   RESPONSIVE DESIGN
+   ================================================================= */
+@media (max-width: 640px) {
+  .welcome-banner {
+    padding: 20px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .welcome-banner-details {
+    flex-direction: column;
+  }
+  
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+  
+  .attendance-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}

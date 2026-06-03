@@ -1,0 +1,204 @@
+.sidebar-aside {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: linear-gradient(
+    180deg,
+    rgba(14, 0, 29, 0.95) 0%,
+    rgba(22, 0, 47, 0.95) 60%,
+    rgba(37, 0, 77, 0.95) 100%
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-right: 1px solid rgba(139, 92, 246, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  z-index: 950;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 0, 17, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 940;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.sidebar-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 4px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.sidebar-brand-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.sidebar-subtitle {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =================================================================
+   SIDEBAR NAVIGATION ITEMS
+   ================================================================= */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.sidebar-link {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: left;
+  position: relative;
+}
+
+.sidebar-link-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-link:hover {
+  color: var(--color-text-hover);
+  background: rgba(243, 232, 255, 0.06);
+}
+
+.sidebar-link:hover .sidebar-link-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.sidebar-link.active {
+  color: var(--color-text-active);
+  background: linear-gradient(135deg, var(--color-violet-light) 0%, var(--color-lavender-deep) 100%);
+  box-shadow: 
+    0 4px 15px rgba(124, 58, 237, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-link.active .sidebar-link-icon {
+  color: var(--color-text-active);
+}
+
+.lock-indicator {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.lock-indicator svg.unlocked {
+  color: var(--color-success);
+}
+
+.locked-link:hover {
+  border-left: 2px solid rgba(239, 68, 68, 0.4);
+}
+
+.sidebar-footer {
+  padding-top: 15px;
+  border-top: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.sidebar-footer-text {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* =================================================================
+   RESPONSIVE STATES
+   ================================================================= */
+
+/* ── Tablet Mode (Collapse) ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar-aside {
+    width: var(--sidebar-collapsed-width);
+    padding: 24px 8px;
+    align-items: center;
+  }
+
+  .sidebar-header {
+    justify-content: center;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 24px;
+  }
+
+  .sidebar-brand-info,
+  .sidebar-link-label,
+  .lock-indicator,
+  .sidebar-footer {
+    display: none;
+  }
+
+  .sidebar-link {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .sidebar-link-icon-wrapper {
+    margin: 0;
+  }
+}
+
+/* ── Mobile Mode (Slide-out Drawer) ── */
+@media (max-width: 768px) {
+  .sidebar-aside {
+    transform: translateX(-100%);
+    width: var(--sidebar-width);
+  }
+
+  .sidebar-aside.sidebar-mobile-open {
+    transform: translateX(0);
+  }
+}
